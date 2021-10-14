@@ -1,14 +1,32 @@
 import React, { useState } from 'react';
-import { Nav, NavbarContainer,NavLogo,NavIcon, HamburgerMenuIcon, NavMenu, NavItem,NavLinks } from './Navbar.elements';
+import { Nav, NavbarContainer,NavLogo,NavIcon, HamburgerMenuIcon, NavMenu, NavItem,NavLinks,NavItemBtn,NavBtnLink } from './Navbar.elements';
 import { FaBars,FaTimes } from 'react-icons/fa';
 import { IconContext } from 'react-icons/lib';
+import { Button } from '../../globalStyles';
+import { useEffect } from 'react';
 
 
 
 const Navbar = () => {
     const [click, setClick] = useState(false)
+    const [button, setButton] = useState(true)
 
     const handleClick = () =>setClick(!click)
+
+    const showButton = () =>{
+        if(window.innerWidth <= 960){
+            setButton(false)
+        }else{
+            setButton(true)
+        }
+    }
+
+
+    useEffect(() => {
+       showButton()
+    }, [])
+
+    window.addEventListener('resize', showButton)
     return (
        <>
        <IconContext.Provider value={{ color:'#fff' }}>
